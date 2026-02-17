@@ -1,16 +1,21 @@
-{% extends "cuisine/base.html" %} {% load static %} {% block title %}Cuisine
-Blog{% endblock %} {% block content %}
+{% extends "cuisine/base.html" %}
+{% load static %}
+
+{% block title %}Cuisine Blog{% endblock %}
+
+{% block content %}
 <h1>Cuisine Collection</h1>
 
 {% for cuisine in cuisines %}
-<h2>
-  <a href="{{ cuisine.get_absolute_url }}"> {{ cuisine.name }} </a>
-</h2>
-<p>Published {{ cuisine.publish }} by {{ cuisine.author }}</p>
-<p>{{ cuisine.description|truncatewords:25|linebreaks }}</p>
+  <h2>
+    <a href="{{ cuisine.get_absolute_url }}">{{ cuisine.name }}</a>
+  </h2>
+  <p>Published {{ cuisine.publish }} by {{ cuisine.author }}</p>
+  <p>{{ cuisine.description|truncatewords:25|linebreaks }}</p>
 {% empty %}
-<p>No cuisines available.</p>
+  <p>No cuisines available.</p>
 {% endfor %}
 
 <hr />
-{% include "cuisine/pagination.html" with page=page_obj %} {% endblock %}
+{% include "cuisine/pagination.html" with page=page_obj %}
+{% endblock %}
